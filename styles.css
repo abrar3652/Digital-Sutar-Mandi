@@ -138,12 +138,13 @@ body {
 .collapse .btn {
     padding: 1rem 1rem;
     font-size: .8rem;
-    border-radius: 20px;
+    border-radius: 40px;
     transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 500;
     box-shadow: var(--shadow-md);
+    border-color: #f8f9fa;
 }
 
  .btn-primary {
@@ -298,10 +299,12 @@ body {
     font-size: 1.5rem;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
+    z-index: 1;
 }
 
 .timeline-item:hover .timeline-icon {
     transform: scale(1.1) rotate(5deg);
+    z-index: 2;
 }
 
 .timeline-content {
@@ -310,11 +313,13 @@ body {
     border-radius: 15px;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
+    z-index: 0;
 }
 
 .timeline-item:hover .timeline-content {
     transform: translateX(5px);
     box-shadow: var(--shadow-lg);
+    z-index: 1;
 }
 
 /* Testimonials */
