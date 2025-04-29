@@ -1,0 +1,136 @@
+/* Manufacturer Specific Styles */
+.inventory-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.inventory-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+}
+
+.inventory-header {
+    padding: 1rem;
+    background-color: var(--accent-color);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.inventory-header h3 {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.inventory-body {
+    padding: 1rem;
+}
+
+.inventory-body p {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.inventory-body i {
+    color: var(--primary-color);
+    margin-right: 0.5rem;
+}
+
+.inventory-footer {
+    padding: 1rem;
+    background-color: var(--light-gray);
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Production Tracking */
+.tracking-section {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+}
+
+.tracking-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.progress {
+    height: 1.5rem;
+    background-color: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Status Badges */
+.badge {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.badge.bg-success {
+    background-color: var(--primary-color) !important;
+}
+
+.badge.bg-warning {
+    background-color: #ffc107 !important;
+    color: var(--text-color);
+}
+
+/* Form Styles */
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 110, 73, 0.25);
+}
+
+.form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(44, 110, 73, 0.25);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .inventory-card {
+        margin-bottom: 1rem;
+    }
+    
+    .tracking-section {
+        padding: 1rem;
+    }
+    
+    .progress {
+        height: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.inventory-card:hover {
+    animation: pulse 0.5s ease;
+} 

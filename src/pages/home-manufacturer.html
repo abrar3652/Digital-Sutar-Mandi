@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer Dashboard - Digital Sutar Mandi</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+    <!-- Include Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-4">
+        <!-- Welcome Section -->
+        <section class="welcome-section mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Welcome, <span id="userName">Manufacturer Name</span>!</h1>
+                    <p class="lead">Manufacturer Dashboard - Yarn Production Management</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newProductionModal">
+                        <i class="fas fa-industry"></i> Start New Production
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section mb-4">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Active Production</h3>
+                        <p class="stat-number">4</p>
+                        <p class="stat-label">In Progress</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Monthly Output</h3>
+                        <p class="stat-number">25,000</p>
+                        <p class="stat-label">kg of Yarn</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Quality Rating</h3>
+                        <p class="stat-number">4.8/5</p>
+                        <p class="stat-label">Average Rating</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Active Orders</h3>
+                        <p class="stat-number">8</p>
+                        <p class="stat-label">Pending Deliveries</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Production Status Section -->
+        <section class="production-section mb-4">
+            <h2>Active Production</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card production-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Production #MFG-2024-001</h5>
+                            <p class="card-text">Cotton Yarn - 40s Count</p>
+                            <div class="production-details">
+                                <p><strong>Target Quantity:</strong> 5000 kg</p>
+                                <p><strong>Progress:</strong> 75%</p>
+                                <p><strong>Quality Score:</strong> 4.9/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-warning">In Progress</span></p>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 75%"></div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card production-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Production #MFG-2024-002</h5>
+                            <p class="card-text">Polyester Yarn - 30s Count</p>
+                            <div class="production-details">
+                                <p><strong>Target Quantity:</strong> 3000 kg</p>
+                                <p><strong>Progress:</strong> 45%</p>
+                                <p><strong>Quality Score:</strong> 4.7/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-info">In Progress</span></p>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 45%"></div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card production-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Production #MFG-2024-003</h5>
+                            <p class="card-text">Blended Yarn - 60/40</p>
+                            <div class="production-details">
+                                <p><strong>Target Quantity:</strong> 2000 kg</p>
+                                <p><strong>Progress:</strong> 90%</p>
+                                <p><strong>Quality Score:</strong> 4.8/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">Near Completion</span></p>
+                            </div>
+                            <div class="progress mb-3">
+                                <div class="progress-bar" role="progressbar" style="width: 90%"></div>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Details</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Production History Section -->
+        <section class="history-section mb-4">
+            <h2>Production History</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Production ID</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Quality Score</th>
+                            <th>Completion Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MFG-2024-001</td>
+                            <td>Cotton Yarn - 40s</td>
+                            <td>5000 kg</td>
+                            <td>4.9/5</td>
+                            <td>2024-03-15</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Details</button>
+                                <button class="btn btn-sm btn-outline-secondary">Quality Report</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MFG-2024-002</td>
+                            <td>Polyester Yarn - 30s</td>
+                            <td>3000 kg</td>
+                            <td>4.7/5</td>
+                            <td>2024-03-10</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Details</button>
+                                <button class="btn btn-sm btn-outline-secondary">Quality Report</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>MFG-2024-003</td>
+                            <td>Blended Yarn - 60/40</td>
+                            <td>2000 kg</td>
+                            <td>4.8/5</td>
+                            <td>2024-03-05</td>
+                            <td><span class="badge bg-success">Completed</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Details</button>
+                                <button class="btn btn-sm btn-outline-secondary">Quality Report</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Quality Control Section -->
+        <section class="quality-section mb-4">
+            <h2>Quality Control Metrics</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card quality-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Tensile Strength</h5>
+                            <p class="card-text">Average: 4.9/5</p>
+                            <div class="quality-details">
+                                <p><strong>Last Test:</strong> 4.95/5</p>
+                                <p><strong>Target:</strong> 4.8/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">Excellent</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Report</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card quality-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Evenness</h5>
+                            <p class="card-text">Average: 4.7/5</p>
+                            <div class="quality-details">
+                                <p><strong>Last Test:</strong> 4.75/5</p>
+                                <p><strong>Target:</strong> 4.6/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">Good</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Report</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card quality-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hairiness</h5>
+                            <p class="card-text">Average: 4.8/5</p>
+                            <div class="quality-details">
+                                <p><strong>Last Test:</strong> 4.85/5</p>
+                                <p><strong>Target:</strong> 4.7/5</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">Excellent</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View Report</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- New Production Modal -->
+    <div class="modal fade" id="newProductionModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Start New Production</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newProductionForm">
+                        <div class="mb-3">
+                            <label class="form-label">Product Type</label>
+                            <select class="form-select" required>
+                                <option value="">Select Product</option>
+                                <option value="cotton-yarn">Cotton Yarn</option>
+                                <option value="polyester-yarn">Polyester Yarn</option>
+                                <option value="blended-yarn">Blended Yarn</option>
+                                <option value="specialty-yarn">Specialty Yarn</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Yarn Count</label>
+                            <select class="form-select" required>
+                                <option value="">Select Count</option>
+                                <option value="20s">20s</option>
+                                <option value="30s">30s</option>
+                                <option value="40s">40s</option>
+                                <option value="60s">60s</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Target Quantity (kg)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Production Line</label>
+                            <select class="form-select" required>
+                                <option value="">Select Line</option>
+                                <option value="line1">Production Line 1</option>
+                                <option value="line2">Production Line 2</option>
+                                <option value="line3">Production Line 3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Target Completion Date</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quality Parameters</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="tensileCheck" checked>
+                                <label class="form-check-label" for="tensileCheck">Tensile Strength Testing</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="evennessCheck" checked>
+                                <label class="form-check-label" for="evennessCheck">Evenness Testing</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="hairinessCheck" checked>
+                                <label class="form-check-label" for="hairinessCheck">Hairiness Testing</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Start Production</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/manufacturer.js"></script>
+    <script>
+        // Load navigation and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html> 

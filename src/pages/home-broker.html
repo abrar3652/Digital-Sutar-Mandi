@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broker Dashboard - Digital Sutar Mandi</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+    <link rel="stylesheet" href="../styles/broker.css">
+</head>
+<body>
+    <!-- Include Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-4">
+        <!-- Welcome Section -->
+        <section class="welcome-section mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Welcome, <span id="userName">Broker Name</span>!</h1>
+                    <p class="lead">Broker Dashboard</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newMatchModal">
+                        <i class="fas fa-handshake"></i> Create New Match
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section mb-4">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Active Deals</h3>
+                        <p class="stat-number" id="activeDealsCount">0</p>
+                        <p class="stat-label">Total Value: Rs. 1,800,000</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Total Commissions</h3>
+                        <p class="stat-number" id="totalCommissions">Rs. 0</p>
+                        <p class="stat-label">From all deals</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Success Rate</h3>
+                        <p class="stat-number" id="successRate">0%</p>
+                        <p class="stat-label">Deal completion rate</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Messages</h3>
+                        <p class="stat-number">12</p>
+                        <p class="stat-label">Unread Messages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Deals Section -->
+        <section class="deals-section mb-4">
+            <h2>Active Deals</h2>
+            <div class="row g-4" id="activeDeals">
+                <!-- Deal cards will be dynamically added here -->
+            </div>
+        </section>
+
+        <!-- Commissions Section -->
+        <section class="commissions-section mb-4">
+            <h2>Recent Commissions</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Deal ID</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="commissionsBody">
+                        <!-- Commission rows will be dynamically added here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- New Match Modal -->
+    <div class="modal fade" id="newMatchModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create New Match</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newMatchForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Supplier</label>
+                                <select class="form-select" name="manufacturer" required>
+                                    <option value="">Select Supplier</option>
+                                    <option value="Textile Mills Ltd">Textile Mills Ltd</option>
+                                    <option value="Cotton Traders">Cotton Traders</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Buyer</label>
+                                <select class="form-select" name="buyer" required>
+                                    <option value="">Select Buyer</option>
+                                    <option value="Garment Factory">Garment Factory</option>
+                                    <option value="Clothing Manufacturer">Clothing Manufacturer</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Product Details</label>
+                            <input type="text" class="form-control" name="product" placeholder="Product name and specifications" required>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" name="quantity" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Price per Unit</label>
+                                <input type="number" class="form-control" name="price" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Commission Percentage</label>
+                            <input type="number" class="form-control" value="5" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Create Match</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="modal fade" id="chatModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Deal Chat</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="chat-messages mb-3" id="chatMessages">
+                        <!-- Chat messages will be dynamically added here -->
+                    </div>
+                    <form id="chatForm" class="mt-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="messageInput" placeholder="Type your message...">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts/auth.js"></script>
+    <script src="../scripts/broker.js"></script>
+    <script>
+        // Load navigation and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html> 

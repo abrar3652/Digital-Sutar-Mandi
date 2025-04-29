@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supplier Dashboard - Digital Sutar Mandi</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../styles/base.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
+</head>
+<body>
+    <!-- Include Navigation -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main class="container mt-5 pt-4">
+        <!-- Welcome Section -->
+        <section class="welcome-section mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Welcome, <span id="userName">Supplier Name</span>!</h1>
+                    <p class="lead">Supplier Dashboard - Raw Material & Yarn Supply</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newInventoryModal">
+                        <i class="fas fa-box"></i> Add Inventory
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section mb-4">
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Active Orders</h3>
+                        <p class="stat-number">5</p>
+                        <p class="stat-label">In Progress</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Inventory</h3>
+                        <p class="stat-number">12,500</p>
+                        <p class="stat-label">kg in Stock</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Monthly Sales</h3>
+                        <p class="stat-number">Rs. 1,800,000</p>
+                        <p class="stat-label">This Month</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <h3>Active Clients</h3>
+                        <p class="stat-number">8</p>
+                        <p class="stat-label">Regular Buyers</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Inventory Section -->
+        <section class="inventory-section mb-4">
+            <h2>Current Inventory</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card inventory-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Cotton Yarn - 40s</h5>
+                            <p class="card-text">Premium Quality</p>
+                            <div class="inventory-details">
+                                <p><strong>Quantity:</strong> 5000 kg</p>
+                                <p><strong>Price:</strong> Rs. 250/kg</p>
+                                <p><strong>Location:</strong> Warehouse A</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">In Stock</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">Update Stock</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card inventory-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Polyester Yarn - 30s</h5>
+                            <p class="card-text">High Strength</p>
+                            <div class="inventory-details">
+                                <p><strong>Quantity:</strong> 3000 kg</p>
+                                <p><strong>Price:</strong> Rs. 180/kg</p>
+                                <p><strong>Location:</strong> Warehouse B</p>
+                                <p><strong>Status:</strong> <span class="badge bg-warning">Low Stock</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">Update Stock</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card inventory-card">
+                        <div class="card-body">
+                            <h5 class="card-title">Blended Yarn - 60/40</h5>
+                            <p class="card-text">Cotton-Polyester Blend</p>
+                            <div class="inventory-details">
+                                <p><strong>Quantity:</strong> 2000 kg</p>
+                                <p><strong>Price:</strong> Rs. 220/kg</p>
+                                <p><strong>Location:</strong> Warehouse C</p>
+                                <p><strong>Status:</strong> <span class="badge bg-success">In Stock</span></p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">Update Stock</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Active Orders Section -->
+        <section class="orders-section mb-4">
+            <h2>Active Orders</h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Client</th>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Total Amount</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>ORD-2024-001</td>
+                            <td>ABC Textiles</td>
+                            <td>Cotton Yarn - 40s</td>
+                            <td>2000 kg</td>
+                            <td>Rs. 500,000</td>
+                            <td><span class="badge bg-warning">Processing</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Update Status</button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ORD-2024-002</td>
+                            <td>XYZ Fabrics</td>
+                            <td>Polyester Yarn - 30s</td>
+                            <td>1500 kg</td>
+                            <td>Rs. 270,000</td>
+                            <td><span class="badge bg-info">Ready for Shipment</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Update Status</button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>ORD-2024-003</td>
+                            <td>PQR Mills</td>
+                            <td>Blended Yarn - 60/40</td>
+                            <td>1000 kg</td>
+                            <td>Rs. 220,000</td>
+                            <td><span class="badge bg-success">Shipped</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary">Update Status</button>
+                                <button class="btn btn-sm btn-outline-secondary">View Details</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Client Management Section -->
+        <section class="clients-section mb-4">
+            <h2>Active Clients</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="card client-card">
+                        <div class="card-body">
+                            <h5 class="card-title">ABC Textiles</h5>
+                            <p class="card-text">Regular Buyer</p>
+                            <div class="client-details">
+                                <p><strong>Orders:</strong> 15</p>
+                                <p><strong>Last Order:</strong> 2 days ago</p>
+                                <p><strong>Rating:</strong> 4.8/5</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View History</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card client-card">
+                        <div class="card-body">
+                            <h5 class="card-title">XYZ Fabrics</h5>
+                            <p class="card-text">Premium Client</p>
+                            <div class="client-details">
+                                <p><strong>Orders:</strong> 12</p>
+                                <p><strong>Last Order:</strong> 5 days ago</p>
+                                <p><strong>Rating:</strong> 4.9/5</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View History</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card client-card">
+                        <div class="card-body">
+                            <h5 class="card-title">PQR Mills</h5>
+                            <p class="card-text">New Client</p>
+                            <div class="client-details">
+                                <p><strong>Orders:</strong> 3</p>
+                                <p><strong>Last Order:</strong> 1 day ago</p>
+                                <p><strong>Rating:</strong> 4.7/5</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View History</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card client-card">
+                        <div class="card-body">
+                            <h5 class="card-title">LMN Industries</h5>
+                            <p class="card-text">Regular Buyer</p>
+                            <div class="client-details">
+                                <p><strong>Orders:</strong> 8</p>
+                                <p><strong>Last Order:</strong> 3 days ago</p>
+                                <p><strong>Rating:</strong> 4.6/5</p>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary">View History</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- New Inventory Modal -->
+    <div class="modal fade" id="newInventoryModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Inventory</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newInventoryForm">
+                        <div class="mb-3">
+                            <label class="form-label">Product Type</label>
+                            <select class="form-select" required>
+                                <option value="">Select Product</option>
+                                <option value="cotton-yarn">Cotton Yarn</option>
+                                <option value="polyester-yarn">Polyester Yarn</option>
+                                <option value="blended-yarn">Blended Yarn</option>
+                                <option value="specialty-yarn">Specialty Yarn</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Yarn Count</label>
+                            <select class="form-select" required>
+                                <option value="">Select Count</option>
+                                <option value="20s">20s</option>
+                                <option value="30s">30s</option>
+                                <option value="40s">40s</option>
+                                <option value="60s">60s</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quantity (kg)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price per kg (Rs.)</label>
+                            <input type="number" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Warehouse Location</label>
+                            <select class="form-select" required>
+                                <option value="">Select Location</option>
+                                <option value="warehouse-a">Warehouse A</option>
+                                <option value="warehouse-b">Warehouse B</option>
+                                <option value="warehouse-c">Warehouse C</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Quality Grade</label>
+                            <select class="form-select" required>
+                                <option value="">Select Grade</option>
+                                <option value="premium">Premium</option>
+                                <option value="standard">Standard</option>
+                                <option value="economy">Economy</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add to Inventory</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/supplier.js"></script>
+    <script>
+        // Load navigation and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('../components/navbar.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('navbar-container').innerHTML = data;
+                });
+
+            fetch('../components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html> 

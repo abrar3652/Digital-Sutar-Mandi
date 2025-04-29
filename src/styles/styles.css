@@ -77,7 +77,7 @@ body {
     position: relative;
     min-height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.7)),
-                url("images/background.jpg") center/cover;
+                url("../assets/images/background.jpg") center/cover;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;

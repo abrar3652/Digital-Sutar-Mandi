@@ -123,12 +123,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const user = users.find(u => u.email === email && u.password === password);
 
                 if (user) {
-                    showSuccess(this, 'Login successful! Redirecting...');
+                    showSuccess(this, 'Login successful!');
                     if (rememberMe) {
-                        localStorage.setItem('currentUser', JSON.stringify({ email: user.email, name: user.name }));
+                        localStorage.setItem('currentUser', JSON.stringify({ email: user.email, name: user.name, role: user.role }));
                     }
                     setTimeout(() => {
-                        window.location.href = 'dashboard.html';
+                        // Redirect based on user role
+                        const role = user.role || 'wholesaler'; // Default to wholesaler if role not set
+                        const redirectMap = {
+                            'broker': '../pages/home-broker.html',
+                            'manufacturer': '../pages/home-manufacturer.html',
+                            'supplier': '../pages/home-supplier.html',
+                            'wholesaler': '../pages/home-wholesaler.html'
+                        };
+                        window.location.href = redirectMap[role] || '../pages/home-wholesaler.html';
                     }, 1500);
                 } else {
                     showError(this.querySelector('#loginEmail'), 'Invalid email or password');
@@ -152,6 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const password = this.querySelector('#signupPassword').value;
         const confirmPassword = this.querySelector('#confirmPassword').value;
         const terms = this.querySelector('#terms').checked;
+        const role = this.querySelector('#userRole').value;
         let isValid = true;
 
         if (!name.trim()) {
@@ -187,7 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (users.some(user => user.email === email)) {
                     showError(this.querySelector('#signupEmail'), 'Email already exists');
                 } else {
-                    addRegisteredUser({ name, email, password });
+                    addRegisteredUser({ name, email, password, role });
                     showSuccess(this, 'Account created successfully! Please sign in.');
                     setTimeout(() => {
                         toggleForms();
@@ -271,4 +280,89 @@ async function sendResetEmail(email, token) {
     // Open reset password page in new tab
     const resetLink = `reset-password.html?token=${token}`;
     window.open(resetLink, '_blank');
-} 
+}
+
+// Authentication and Navigation Management
+const auth = {
+    currentUser: null,
+    
+    // Initialize authentication
+    init() {
+        this.loadUser();
+        this.setupEventListeners();
+    },
+    
+    // Load user from localStorage
+    loadUser() {
+        const userData = localStorage.getItem('currentUser');
+        if (userData) {
+            this.currentUser = JSON.parse(userData);
+            this.updateUI();
+        }
+    },
+    
+    // Update UI based on user role
+    updateUI() {
+        if (this.currentUser) {
+            // Update user dropdown
+            document.getElementById('userDropdown').innerHTML = `
+                <i class="fas fa-user"></i> ${this.currentUser.name}
+            `;
+            
+            // Show/hide role-specific navigation
+            const brokerNav = document.querySelector('a[href="../pages/home-broker.html"]')?.parentElement;
+            const manufacturerNav = document.querySelector('a[href="../pages/home-manufacturer.html"]')?.parentElement;
+            const supplierNav = document.querySelector('a[href="../pages/home-supplier.html"]')?.parentElement;
+            const wholesalerNav = document.querySelector('a[href="../pages/home-wholesaler.html"]')?.parentElement;
+            
+            if (brokerNav) brokerNav.style.display = this.currentUser.role === 'broker' ? 'block' : 'none';
+            if (manufacturerNav) manufacturerNav.style.display = this.currentUser.role === 'manufacturer' ? 'block' : 'none';
+            if (supplierNav) supplierNav.style.display = this.currentUser.role === 'supplier' ? 'block' : 'none';
+            if (wholesalerNav) wholesalerNav.style.display = this.currentUser.role === 'wholesaler' ? 'block' : 'none';
+        }
+    },
+    
+    // Setup event listeners
+    setupEventListeners() {
+        // Logout button
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                this.logout();
+            });
+        }
+        
+        // Language toggle
+        const languageToggle = document.getElementById('languageToggle');
+        if (languageToggle) {
+            languageToggle.addEventListener('click', () => {
+                this.toggleLanguage();
+            });
+        }
+    },
+    
+    // Handle logout
+    logout() {
+        localStorage.removeItem('currentUser');
+        this.currentUser = null;
+        window.location.href = '../pages/index.html';
+    },
+    
+    // Toggle language
+    toggleLanguage() {
+        const isUrdu = document.body.style.direction === 'rtl';
+        document.body.style.direction = isUrdu ? 'ltr' : 'rtl';
+        document.body.style.fontFamily = isUrdu ? 
+            "'Poppins', sans-serif" : 
+            "'Noto Nastaliq Urdu', serif";
+            
+        document.getElementById('languageToggle').innerHTML = isUrdu ? 
+            '<i class="fas fa-language"></i> اردو' : 
+            '<i class="fas fa-language"></i> English';
+    }
+};
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    auth.init();
+}); 
